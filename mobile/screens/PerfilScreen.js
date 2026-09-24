@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { View, Text } from "react-native"
+import { View, Text,Button } from "react-native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import api from "../services/api"
 
-export default function PerfilScreen(){
+export default function PerfilScreen({navigation}){
 
  const [user, setUser] = useState(null)
 
@@ -16,7 +16,7 @@ export default function PerfilScreen(){
        Authorization: `Bearer ${token}`
      }
    })
-
+   console.log(response.data.user)
    setUser(response.data.user)
 
  }
@@ -32,8 +32,21 @@ export default function PerfilScreen(){
      <Text>Usuário logado:</Text>
 
      {user && (
-       <Text>{user.email}</Text>
+      <>
+         <Text>{user.email}</Text>  
+         <Text>{user.prof}</Text>       
+      </>
+      
      )}
+
+     <Button 
+        title="Sair"
+        onPress={()=>{
+            AsyncStorage.clear()
+            navigation.navigate("Login")
+          
+        }}
+     />
 
    </View>
 
