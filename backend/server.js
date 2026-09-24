@@ -36,7 +36,8 @@ app.post("/login",(req,res)=>{
             //Payload - dados que serão armazenados dentro do token
             //Nesse exemplo iremos armazenar o e-mail do usuário.
             {
-                email:email
+                email:email,
+                prof:"Fernando"
             },
             //Chave secreta para gerarmos um token JWT
             //O servidor irá utilizar essa chave secretar para validar o token
